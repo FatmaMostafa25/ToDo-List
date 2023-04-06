@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import CoreData
 
 class DoneViewController: UIViewController {
+
+    
+    var doneTasksList : [NSManagedObject]?
+    var coreDataViewModel : CoreDataViewModel?
 
     @IBOutlet weak var doneTasksTableView: UITableView!
     {
@@ -20,10 +25,12 @@ class DoneViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        coreDataViewModel = CoreDataViewModel()
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+            doneTasksList = coreDataViewModel?.tasksDataBase.fetchTasks(state: 3)
+            doneTasksTableView.reloadData()
+    }
 }
 
 extension DoneViewController : UITableViewDataSource
@@ -32,12 +39,23 @@ extension DoneViewController : UITableViewDataSource
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return doneTasksList?.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
-        cell.taskTitle.text = "Task Name"
-        cell.taskPriorityImage.image = UIImage(named: "low")
+        
+        cell.taskTitle.text = doneTasksList?[indexPath.row].value(forKey: "title") as? String
+        switch doneTasksList?[indexPath.row].value(forKey: "priority") as? Int
+        {
+        case 1 :
+            cell.taskPriorityImage.image = UIImage(named: "high")
+        case 2 :
+            cell.taskPriorityImage.image = UIImage(named: "med")
+        case 3 :
+            cell.taskPriorityImage.image = UIImage(named: "low")
+        default :
+            cell.taskPriorityImage.image = UIImage(named: "high")
+        }
         return cell
     }
 }

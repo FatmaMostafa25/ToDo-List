@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import CoreData
 
 class InProgressViewController: UIViewController {
+
+    var inProgressTasksList : [NSManagedObject]?
+    var coreDataViewModel : CoreDataViewModel?
 
     @IBOutlet weak var inProgressTasksTableView: UITableView!
     {
@@ -20,10 +24,12 @@ class InProgressViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        coreDataViewModel = CoreDataViewModel()
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+            inProgressTasksList = coreDataViewModel?.tasksDataBase.fetchTasks(state: 1)
+            inProgressTasksTableView.reloadData()
+    }
 }
 
 extension InProgressViewController : UITableViewDataSource
@@ -32,12 +38,23 @@ extension InProgressViewController : UITableViewDataSource
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return inProgressTasksList?.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
-        cell.taskTitle.text = "Task Name"
-        cell.taskPriorityImage.image = UIImage(named: "low")
+        
+        cell.taskTitle.text = inProgressTasksList?[indexPath.row].value(forKey: "title") as? String
+        switch inProgressTasksList?[indexPath.row].value(forKey: "priority") as? Int
+        {
+        case 1 :
+            cell.taskPriorityImage.image = UIImage(named: "high")
+        case 2 :
+            cell.taskPriorityImage.image = UIImage(named: "med")
+        case 3 :
+            cell.taskPriorityImage.image = UIImage(named: "low")
+        default :
+            cell.taskPriorityImage.image = UIImage(named: "high")
+        }
         return cell
     }
 }

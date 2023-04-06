@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import CoreData
 
 class ToDoViewController: UIViewController {
+
+    var todoTasksList : [NSManagedObject]?
+    var coreDataViewModel : CoreDataViewModel?
 
     @IBOutlet weak var todoTasksTableView: UITableView!
     {
@@ -21,6 +25,11 @@ class ToDoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        coreDataViewModel = CoreDataViewModel()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        todoTasksList = coreDataViewModel?.tasksDataBase.fetchTasks(state: 1)
+        todoTasksTableView.reloadData()
     }
     
     @IBAction func addNewTask(_ sender: Any) {
@@ -35,12 +44,22 @@ extension ToDoViewController : UITableViewDataSource
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return todoTasksList?.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
-        cell.taskTitle.text = "Task Name"
-        cell.taskPriorityImage.image = UIImage(named: "high")
+        cell.taskTitle.text = todoTasksList?[indexPath.row].value(forKey: "title") as? String
+        switch todoTasksList?[indexPath.row].value(forKey: "priority") as? Int
+        {
+        case 1 :
+            cell.taskPriorityImage.image = UIImage(named: "high")
+        case 2 :
+            cell.taskPriorityImage.image = UIImage(named: "med")
+        case 3 :
+            cell.taskPriorityImage.image = UIImage(named: "low")
+        default :
+            cell.taskPriorityImage.image = UIImage(named: "high")
+        }
         return cell
     }
 }
@@ -50,4 +69,22 @@ extension ToDoViewController : UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let editTaskVC = storyboard?.instantiateViewController(withIdentifier: "editTask")
+        
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            let deleteAlert : UIAlertController  = UIAlertController(title:"Delete this product?", message:"Are you sure you want to delete this product from cart ?", preferredStyle: .actionSheet)
+            deleteAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler:{ [self] action in
+                self.coreDataViewModel?.tasksDataBase.deleteTask(id: todoTasksList?[indexPath.row].value(forKey: "id") as! UUID)
+                self.todoTasksList?.remove(at: indexPath.row)
+                self.todoTasksTableView.reloadData()
+            }))
+            deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(deleteAlert, animated:true, completion:nil )
+    }
+    
 }
