@@ -27,7 +27,7 @@ class InProgressViewController: UIViewController {
         coreDataViewModel = CoreDataViewModel()
     }
     override func viewWillAppear(_ animated: Bool) {
-            inProgressTasksList = coreDataViewModel?.tasksDataBase.fetchTasks(state: 1)
+            inProgressTasksList = coreDataViewModel?.tasksDataBase.fetchTasks(state: 2)
             inProgressTasksTableView.reloadData()
     }
 }

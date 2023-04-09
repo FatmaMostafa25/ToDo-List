@@ -11,5 +11,6 @@ import CoreData
 protocol CartCD {
     func saveTask(newTask : Tasks)
     func fetchTasks(state : Int)-> [NSManagedObject]?
-    func deleteTask(id : UUID)
+    func editTask(editedTask : Tasks)
+    func deleteTask(id : UUID, taskState : Int)
 }

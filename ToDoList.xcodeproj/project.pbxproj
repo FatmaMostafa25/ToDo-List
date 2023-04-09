@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F16C06C29DF81E100D4D938 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F16C06B29DF81E100D4D938 /* SignUpViewController.swift */; };
+		4F16C06E29DF821200D4D938 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F16C06D29DF821200D4D938 /* SignInViewController.swift */; };
+		4F19F4A429E117940010694F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F19F4A329E117940010694F /* SearchViewController.swift */; };
+		4F1DA4EA29E0BDED007EC36B /* TasksTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DA4E929E0BDED007EC36B /* TasksTabBarController.swift */; };
 		4F1E2EF129DE7DB00068D989 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E2EF029DE7DB00068D989 /* CoreDataManager.swift */; };
 		4F1E2EF329DE7DF40068D989 /* CoreDataProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E2EF229DE7DF40068D989 /* CoreDataProtocols.swift */; };
 		4F1E2EF529DE84D40068D989 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E2EF429DE84D40068D989 /* Task.swift */; };
@@ -28,6 +32,7 @@
 		4FC8ABED29DE298200D4B418 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8ABEC29DE298200D4B418 /* DoneViewController.swift */; };
 		4FCB3E7429DE44CB00CDB572 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCB3E7229DE44CB00CDB572 /* TaskTableViewCell.swift */; };
 		4FCB3E7529DE44CB00CDB572 /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCB3E7329DE44CB00CDB572 /* TaskTableViewCell.xib */; };
+		4FE9CCFE29DFD5A8003085C8 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9CCFD29DFD5A7003085C8 /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +53,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F16C06B29DF81E100D4D938 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		4F16C06D29DF821200D4D938 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		4F19F4A329E117940010694F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		4F1DA4E929E0BDED007EC36B /* TasksTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTabBarController.swift; sourceTree = "<group>"; };
 		4F1E2EF029DE7DB00068D989 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		4F1E2EF229DE7DF40068D989 /* CoreDataProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProtocols.swift; sourceTree = "<group>"; };
 		4F1E2EF429DE84D40068D989 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -73,6 +82,7 @@
 		4FC8ABEC29DE298200D4B418 /* DoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneViewController.swift; sourceTree = "<group>"; };
 		4FCB3E7229DE44CB00CDB572 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		4FCB3E7329DE44CB00CDB572 /* TaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
+		4FE9CCFD29DFD5A7003085C8 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +145,11 @@
 				4FC8ABE429DE28EF00D4B418 /* AddTaskViewController.swift */,
 				4FC8ABE629DE290600D4B418 /* EditTaskViewController.swift */,
 				4FC8ABE829DE293500D4B418 /* TaskDetailsViewController.swift */,
+				4F16C06B29DF81E100D4D938 /* SignUpViewController.swift */,
+				4F16C06D29DF821200D4D938 /* SignInViewController.swift */,
+				4FE9CCFD29DFD5A7003085C8 /* WelcomeViewController.swift */,
+				4F1DA4E929E0BDED007EC36B /* TasksTabBarController.swift */,
+				4F19F4A329E117940010694F /* SearchViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -355,13 +370,18 @@
 				4FC8ABB629DE243A00D4B418 /* ToDoViewController.swift in Sources */,
 				4FCB3E7429DE44CB00CDB572 /* TaskTableViewCell.swift in Sources */,
 				4FC8ABE729DE290600D4B418 /* EditTaskViewController.swift in Sources */,
+				4F19F4A429E117940010694F /* SearchViewController.swift in Sources */,
 				4FC8ABB229DE243A00D4B418 /* AppDelegate.swift in Sources */,
+				4FE9CCFE29DFD5A8003085C8 /* WelcomeViewController.swift in Sources */,
 				4FC8ABEB29DE297000D4B418 /* InProgressViewController.swift in Sources */,
 				4F1E2EF329DE7DF40068D989 /* CoreDataProtocols.swift in Sources */,
 				4FC8ABB429DE243A00D4B418 /* SceneDelegate.swift in Sources */,
 				4F1E2EF529DE84D40068D989 /* Task.swift in Sources */,
+				4F16C06C29DF81E100D4D938 /* SignUpViewController.swift in Sources */,
 				4F1E2EF829DE8D530068D989 /* CoreDataViewModel.swift in Sources */,
+				4F1DA4EA29E0BDED007EC36B /* TasksTabBarController.swift in Sources */,
 				4FC8ABBC29DE243A00D4B418 /* ToDoList.xcdatamodeld in Sources */,
+				4F16C06E29DF821200D4D938 /* SignInViewController.swift in Sources */,
 				4FC8ABED29DE298200D4B418 /* DoneViewController.swift in Sources */,
 				4FC8ABE529DE28EF00D4B418 /* AddTaskViewController.swift in Sources */,
 				4F1E2EF129DE7DB00068D989 /* CoreDataManager.swift in Sources */,

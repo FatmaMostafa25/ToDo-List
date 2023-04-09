@@ -9,6 +9,7 @@ import Foundation
 
 class Tasks
 {
+    var id : UUID?
     var title : String?
     var descriptions : String?
     var priority : Int?
