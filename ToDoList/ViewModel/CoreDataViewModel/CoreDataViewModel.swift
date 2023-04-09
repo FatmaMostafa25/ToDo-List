@@ -9,6 +9,6 @@ import Foundation
 
 class CoreDataViewModel {
     
-    var tasksDataBase = CoreDataManager.getCartInstance()
+    var tasksDataBase = CoreDataManager.getTaskInstance()
 }
 

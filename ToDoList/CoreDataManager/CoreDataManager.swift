@@ -16,14 +16,14 @@ class CoreDataManager : CartCD {
     let managedContext : NSManagedObjectContext!
     let entity : NSEntityDescription!
     
-    private static var cartInstance : CoreDataManager?
+    private static var taskInstance : CoreDataManager?
     
-    public static func getCartInstance() -> CoreDataManager {
-        if let instance = cartInstance {
+    public static func getTaskInstance() -> CoreDataManager {
+        if let instance = taskInstance {
             return instance
         }else{
-            cartInstance = CoreDataManager()
-            return cartInstance!
+            taskInstance = CoreDataManager()
+            return taskInstance!
         }
     }
     
@@ -57,9 +57,22 @@ class CoreDataManager : CartCD {
             return nil
         }
     }
-    
-    func deleteTask(id : UUID) {
+    func editTask(editedTask : Tasks)
+    {
         if let arr = fetchTasks(state: 1) {
+            for obj in arr {
+                if obj.value(forKey:"id") as? UUID == editedTask.id {
+                    obj.setValue(editedTask.title, forKey: "title")
+                    obj.setValue(editedTask.descriptions, forKey: "descriptions")
+                    obj.setValue(editedTask.priority, forKey: "priority")
+                    obj.setValue(editedTask.state, forKey: "state")
+                    try?managedContext.save()
+                }
+            }
+        }
+    }
+    func deleteTask(id : UUID, taskState : Int) {
+        if let arr = fetchTasks(state: taskState) {
             for obj in arr {
                 if obj.value(forKey:"id") as! UUID == id {
                     managedContext.delete(obj)
